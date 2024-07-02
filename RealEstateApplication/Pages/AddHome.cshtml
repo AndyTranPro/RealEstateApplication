@@ -1,0 +1,25 @@
+﻿@page
+@model RealEstateApplication.Pages.AddHomeModel
+@{
+}
+
+<a class="btn btn-outline-dark mt-3 mb-3" asp-page="/Index">Back to Home List</a>
+
+<h2>Add a New Home</h2>
+
+<form class="pb-3" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group pb-3 w-25">
+        <label>Price</label>
+        <input asp-for="NewHome.Price" class="form-control" />
+    </div>
+    <div class="form-group pb-3 w-25">
+        <label>Address</label>
+        <input asp-for="NewHome.Address" class="form-control" />
+    </div>
+    <div class="form-group pb-3 w-25">
+        <label>Square Meters</label>
+        <input asp-for="NewHome.Area" class="form-control" />
+    </div>
+    <input type="submit" class="btn btn-success" value="Add Home" />
+</form>
