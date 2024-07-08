@@ -26,8 +26,17 @@ namespace RealEstateApplication.Pages
             {
                 return Page();
             }
-            _homeService.AddHome(NewHome);
-            return RedirectToPage("/Index");
+            try
+            {
+                _homeService.AddHome(NewHome);
+                TempData["SuccessMessage"] = "Home added successfully!";
+                return RedirectToPage("/Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error adding home: {ex.Message}";
+            }
+            return Page();
         }
     }
 }

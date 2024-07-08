@@ -1,7 +1,9 @@
-﻿body {
+﻿.home-price {
+    font-weight: 600;
+    color: blue;
 }
 
-.expensive-home {
-    background-color: #ffcccc;
-    font-weight: bold;
+.home-area {
+    font-weight: 600;
+    color: red;
 }

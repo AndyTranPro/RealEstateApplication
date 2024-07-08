@@ -16,10 +16,16 @@ namespace RealEstateApplication.Pages
             _homeService = homeService;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            Homes = _homeService.GetHomes(); // use the HomeService to get the list of homes
-            ThresholdPrice = 400000;
+            try
+            {
+                Homes = _homeService.GetHomes(); // use the HomeService to get the list of homes
+            } catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error fetching home from the database: {ex.Message}. Refresh the page.";
+            }
+            return Page();
         }
     }
 }

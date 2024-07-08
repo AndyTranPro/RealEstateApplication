@@ -35,14 +35,33 @@ namespace RealEstateApplication.Pages
             {
                 return Page();
             }
-            _homeService.UpdateHome(Home);
-            return RedirectToPage("/Index");
+
+            try
+            {
+                _homeService.UpdateHome(Home);
+                TempData["SuccessMessage"] = "Home updated successfully!";
+                return RedirectToPage("/Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error updating home: {ex.Message}";
+            }
+            return Page();
         }
 
         public IActionResult OnPostDelete(int id)
         {
-            _homeService.DeleteHome(id);
-            return new OkResult();
+            try
+            {
+                _homeService.DeleteHome(id);
+                TempData["SuccessMessage"] = "Home deleted successfully!";
+                return new OkResult();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error deleting home: {ex.Message}";
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }
